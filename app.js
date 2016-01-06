@@ -20,7 +20,12 @@ passport.use(new LinkedInStrategy({
   scope: ['r_emailaddress', 'r_basicprofile'],
   state: true
 }, function(accessToken, refreshToken, profile, done) {
-    return done(null, {id: profile.id, displayName: profile.displayName});
+    // console.log(profile);
+    return done(null, {
+      id: profile.id,
+      displayName: profile.displayName,
+      token: accessToken
+    });
 }));
 
 passport.serializeUser(function(user, done) {
